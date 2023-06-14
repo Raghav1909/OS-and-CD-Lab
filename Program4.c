@@ -10,27 +10,28 @@ struct segment
     bool allocated;
 } seg[10];
 
-void first_fit(int n, int request)
+int m, n;
+
+void first_fit(int pn, int request)
 {
     int i, flag = 0;
-
-    for (i = 0; i < n; i++)
+    for (i = 0; i < m; i++)
     {
         if (request <= seg[i].size && !seg[i].allocated)
         {
             seg[i].allocated = true;
-            printf("\nProcess requirement %d is allocated to memory segment %d\n", request, seg[i].size);
+            printf("\nprocess requirement %d is allocated to memory segment %d\n", request, seg[i].size);
             flag = 1;
+            break;
         }
-
-        if (flag == 0)
-            printf("Process requirement %d is not allowed \n", request);
     }
+    if (flag == 0)
+        printf("process requirement %d is not allocated \n", request);
 }
 
 void main()
 {
-    int i, n, m, p[100];
+    int i, p[100];
     printf("Enter the no of memory segments: ");
     scanf("%d", &n);
 
